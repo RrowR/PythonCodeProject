@@ -23,7 +23,6 @@ neko1.speak("你好")
 dog1 = Dog("旺财")
 print(dog1.names)
 
-
 # class Student:
 #     def __init__(self, name, stu_no, chinese, math, english):
 #         self.name = name
@@ -41,10 +40,7 @@ print(dog1.names)
 # Student("张五", 3, 44, 51, 31).getInfo()
 
 
-
 print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-
-
 
 
 # 优化版本
@@ -61,15 +57,16 @@ class Student:
     def setGrade(self, course, score):
         if course in self.grade:
             self.grade[course] = score
+
     def print_grade(self):
         print(f"学生{self.name}（学号:{self.stu_no}）的成绩为：")
         for course in self.grade:
             print(f"{course}:{self.grade[course]}分")
 
 
-s1 = Student("张三",111)
-s1.setGrade("语文",87)
-s1.setGrade("数学",88)
-s1.setGrade("英语",121)
+s1 = Student("张三", 111)
+s1.setGrade("语文", 87)
+s1.setGrade("数学", 88)
+s1.setGrade("英语", 121)
 
 s1.print_grade()
