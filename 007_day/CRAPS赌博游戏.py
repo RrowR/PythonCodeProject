@@ -20,34 +20,42 @@ while True:
     count += 1
     # 编写规则
     print("骰子开始骰喽.......")
+    print(f'当前金钱剩余{money}')
     tz = random.randrange(1,7) + random.randrange(1,7)
+    print(f'骰子点数为{tz}')
     if count == 1:   # 判断是否是第一次的条件
         tz0 = tz
         if tz == 7 or tz == 11:
             money += gambling
-            print(f'您摇出的点数为={tz},您获胜,您当前现金为{money}')
+            print(f'1您摇出的点数为={tz},您获胜,您当前现金为{money}')
             gambling = int(input("玩家请下注="))
             continue
         elif tz == 2 or tz == 3 or tz == 12:
             money -= gambling
-            print(f'您摇出的点数为={tz},庄家胜,您当前现金为{money}')
+            print(f'1您摇出的点数为={tz},庄家胜,您当前现金为{money}')
             if money <= 0:
                 print(f'您已经破产了...')
                 break
             gambling = int(input("玩家请下注="))
             continue
         else:
-            print(f'当前骰子数为:{tz},没有胜出者，继续投骰子...')
+            print(f'1当前骰子数为:{tz},没有胜出者，继续投骰子...')
     else:
         if tz == 7:
-            print("庄家获胜")
+            print(f'当前点数为{tz}庄家获胜')
             money -= gambling
             count = 0
             tz0 = 0
+            print(f'当前剩余{money}元')
+            gambling = int(input("玩家请下注="))
+            if money <= 0:
+                break
         elif tz == tz0:
-            print("玩家获胜")
+            print(f'当前点数为{tz}玩家获胜')
             money += gambling
             count = 0
             tz0 = 0
-
+            print(f'当前剩余{money}元')
+            gambling = int(input("玩家请下注="))
+print("您已经破产")
 
