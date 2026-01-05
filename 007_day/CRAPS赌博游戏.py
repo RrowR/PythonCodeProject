@@ -8,3 +8,46 @@
 # 每局游戏开始之前，玩家先下注，如果玩家获胜就可以获得对应下注金额的奖励，如果庄家获胜，
 # 玩家就会输掉自己下注的金额。游戏结束的条件是玩家破产（输光所有的赌注）
 
+import random
+
+money = 1000
+print("您的现金目前有1000RMB")
+tz0 = 0
+count = 0
+
+gambling = int(input("玩家请下注="))
+while True:
+    count += 1
+    # 编写规则
+    print("骰子开始骰喽.......")
+    tz = random.randrange(1,7) + random.randrange(1,7)
+    if count == 1:   # 判断是否是第一次的条件
+        tz0 = tz
+        if tz == 7 or tz == 11:
+            money += gambling
+            print(f'您摇出的点数为={tz},您获胜,您当前现金为{money}')
+            gambling = int(input("玩家请下注="))
+            continue
+        elif tz == 2 or tz == 3 or tz == 12:
+            money -= gambling
+            print(f'您摇出的点数为={tz},庄家胜,您当前现金为{money}')
+            if money <= 0:
+                print(f'您已经破产了...')
+                break
+            gambling = int(input("玩家请下注="))
+            continue
+        else:
+            print(f'当前骰子数为:{tz},没有胜出者，继续投骰子...')
+    else:
+        if tz == 7:
+            print("庄家获胜")
+            money -= gambling
+            count = 0
+            tz0 = 0
+        elif tz == tz0:
+            print("玩家获胜")
+            money += gambling
+            count = 0
+            tz0 = 0
+
+
