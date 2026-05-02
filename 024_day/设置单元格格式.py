@@ -1,8 +1,4 @@
 import xlwt
-
-
-
-
 font = xlwt.Font()
 # 字体名称
 font.name = '华文楷体'
