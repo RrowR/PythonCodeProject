@@ -1,0 +1,26 @@
+import re
+
+# 创建正则表达式对象，使用了前瞻和回顾来保证手机号前后不应该再出现数字
+pattern = re.compile(r'(?<=\D)1[34578]\d{9}(?=\D)')
+sentence = '''重要的事情说8130123456789遍，我的手机号是13512346789这个靓号，
+不是15600998765，也不是110或119，王大锤的手机号才是15600998765。'''
+
+# 方法1 直接提取所有文本里的手机号
+tels_List = re.findall(pattern,sentence)
+for tel in tels_List:
+    print(tel)
+
+print('-------------分割线----------------')
+
+# 方法2 根据迭代器去除匹配对象并获取到匹配的内容
+for temp in pattern.finditer(sentence):
+    print(temp.group())
+
+print('-------------分割线----------------')
+
+# 方法3 根据search函数指定收缩位置查询出所有匹配
+m = pattern.search(sentence)
+while m:
+    print(m.group())
+    m = pattern.search(sentence,m.end())
+
